@@ -1,0 +1,36 @@
+{% extends "layouts/base.html.twig" %}
+
+{% block title %}HomePage{% endblock %}
+
+{% block content %}
+
+    <table class="table-striped" style="width:80%">
+
+        <tr>
+            <th> Name </th>
+            <th>Nombre de discussions</th>
+            <th>dernier ajout</th>
+        </tr>
+        {% for theme in theme %}
+            <tr>
+
+                <td><a href="/discussions/{{ theme.id }}"> {{ theme.nom }} </a></td>
+                <td> {{ theme.nbDiscussions }}</td>
+                <td>
+
+                    {% if theme.lastDiscussion != null %}
+                        {{ theme.lastDiscussion|date('F j, Y, g:i a') }}
+                    {% else %}
+                        <h5>pas d'ajout</h5>
+                    {% endif %}
+
+                </td>
+                <td> <a href="/deleteTheme/{{ theme.id }}"> Supprimer </a></td>
+
+
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}

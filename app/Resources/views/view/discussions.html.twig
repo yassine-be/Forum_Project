@@ -1,0 +1,37 @@
+{% extends "layouts/base.html.twig" %}
+
+{% block title %}discussion list{% endblock %}
+
+{% block content %}
+
+    <h3>Liste de discussions</h3>
+
+
+    <table class="table-striped" style="width:100%">
+
+        <tr>
+            <th>message</th>
+            <th>pseudo</th>
+            <th>date d'ajout</th>
+
+        </tr>
+        {% for discussion in discussion %}
+            <tr>
+
+                <td> {{ discussion.message }} </td>
+                <td> {{ discussion.pseudo }} </td>
+                <td> {{ discussion.dateTime|date}}</td>
+                <td> <a href="/discussions/{{ discussion.themeId }}/editDiscussion/{{ discussion.id }}"> Modifier </a></td>
+                <td> <a href="/discussions/{{ discussion.themeId }}/deleteDiscussion/{{ discussion.id }}"> Supprimer </a></td>
+
+
+            </tr>
+        {% endfor %}
+    </table>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+
+{% endblock %}
